@@ -7,7 +7,6 @@ import java.util.HashMap;
 import org.testng.annotations.Test;
 
 import io.restassured.response.Response;
-import io.restassured.response.ResponseBodyExtractionOptions;
 
 public class SampleDeleteRequest {
 	int id;
