@@ -1,12 +1,8 @@
 package org.restassured.requestbodylearning;
 
 import static org.testng.Assert.assertEquals;
-
-import org.json.JSONObject;
 import org.testng.annotations.Test;
-
 import io.restassured.response.Response;
-
 import static io.restassured.RestAssured.*;
 
 /**
@@ -35,20 +31,24 @@ import static io.restassured.RestAssured.*;
  *
  */
 
-public class JSONBodyCreation {
+public class JSONBodyCreation_Pojo {
+	
+	/**
+	 * In this Example We are using POJO Class to Create Request Body
+	 */
 	
 	@Test
-	public void requestBodyUsingORGJSON() {
-		JSONObject data = new JSONObject() ;
-		data.put("title","Redmi Note 12 Pro");
-		data.put("description","Redmi Note 12 Pro Latest Phone");
-		data.put("price",16581);
-		data.put("discountPercentage",15.23);
-		data.put("rating",4);
-		data.put("stock",1000);
-		data.put("brand","Xiaomi");
-		data.put("category","Smartphones");
-		data.put("thumbnail","https://i.dummyjson.com/data/products/1/thumbnail.jpg");
+	public void requestBodyUsingPojo() {
+		Products_Pojo data = new Products_Pojo() ;
+		data.setTitle("Redmi Note 12 Pro");
+		data.setDescription("Redmi Note 12 Pro Latest Phone");
+		data.setPrice(16581);
+		data.setDiscountPercentage(15.23);
+		data.setRating(4);
+		data.setStock(1000);
+		data.setBrand("Xiaomi");
+		data.setCategory("Smartphones");
+		data.setThumbnail("https://i.dummyjson.com/data/products/1/thumbnail.jpg");
 		
 		String imagesArr[] = {"https://i.dummyjson.com/data/products/1/1.jpg",
 				"https://i.dummyjson.com/data/products/1/2.jpg",
@@ -56,21 +56,19 @@ public class JSONBodyCreation {
 			    "https://i.dummyjson.com/data/products/1/4.jpg",
 			    "https://i.dummyjson.com/data/products/1/thumbnail.jpg"};
 		
-		data.put("imagesArr",imagesArr);
-		
-		System.out.println(data.toString());
+		data.setImagesArr(imagesArr);
 		
 		Response res =
 		given()
 		.contentType("application/json")
-		.body(data.toString())
+		.body(data)
 		.when()
 		.post("https://dummyjson.com/products/add")
 		.then()
 		.extract().response();
 		
 		assertEquals(res.jsonPath().get("title"), "Redmi Note 12 Pro");
-		
+		System.out.println("****Response Body Printed ***********");
 		System.out.println(res.asPrettyString());
 	}
 
