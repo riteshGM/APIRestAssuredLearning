@@ -1,4 +1,4 @@
-package org.restassured.pathandqueryparameters;
+package org.restassured.basics;
 
 import static io.restassured.RestAssured.*;
 import static io.restassured.matcher.RestAssuredMatchers.*;
