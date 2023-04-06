@@ -29,7 +29,6 @@ public class PathAndQueryParameters {
 				.extract().response();
 
 		assertEquals(res.jsonPath().get("page"), 2);
-
 		System.out.println(res.asPrettyString());
 	}
 
