@@ -2,7 +2,12 @@ package org.restassured.requestbodylearning;
 
 import static org.testng.Assert.assertEquals;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 import org.json.JSONObject;
+import org.json.JSONTokener;
 import org.testng.annotations.Test;
 
 import io.restassured.response.Response;
@@ -36,10 +41,18 @@ import static io.restassured.RestAssured.*;
  */
 
 public class JSONBodyCreation_ExternalJSONFile {
-	
+	/**
+	 * Program to create JSON Body from External JSON File
+	 * @throws FileNotFoundException
+	 */
 	@Test
-	public void requestBodyUsingExternalJSONFile() {
-
+	public void requestBodyUsingExternalJSONFile() throws FileNotFoundException {
+		File f = new File (".\\src\\test\\resources\\external.json");
+		FileReader fr = new FileReader(f);
+		JSONTokener jt = new JSONTokener(fr);
+		
+		JSONObject data = new JSONObject(jt);
+		System.out.println(data.toString());
 		Response res =
 		given()
 		.contentType("application/json")
@@ -49,7 +62,7 @@ public class JSONBodyCreation_ExternalJSONFile {
 		.then()
 		.extract().response();
 		
-		assertEquals(res.jsonPath().get("title"), "Redmi Note 12 Pro");
+		assertEquals(res.jsonPath().get("title"), "iPhone 9");
 		
 		System.out.println(res.asPrettyString());
 	}
