@@ -35,31 +35,11 @@ import static io.restassured.RestAssured.*;
  *
  */
 
-public class JSONBodyCreation_ORGJson {
+public class JSONBodyCreation_ExternalJSONFile {
 	
 	@Test
-	public void requestBodyUsingORGJSON() {
-		JSONObject data = new JSONObject() ;
-		data.put("title","Redmi Note 12 Pro");
-		data.put("description","Redmi Note 12 Pro Latest Phone");
-		data.put("price",16581);
-		data.put("discountPercentage",15.23);
-		data.put("rating",4);
-		data.put("stock",1000);
-		data.put("brand","Xiaomi");
-		data.put("category","Smartphones");
-		data.put("thumbnail","https://i.dummyjson.com/data/products/1/thumbnail.jpg");
-		
-		String imagesArr[] = {"https://i.dummyjson.com/data/products/1/1.jpg",
-				"https://i.dummyjson.com/data/products/1/2.jpg",
-			    "https://i.dummyjson.com/data/products/1/3.jpg",
-			    "https://i.dummyjson.com/data/products/1/4.jpg",
-			    "https://i.dummyjson.com/data/products/1/thumbnail.jpg"};
-		
-		data.put("images",imagesArr);
-		
-		System.out.println(data.toString());
-		
+	public void requestBodyUsingExternalJSONFile() {
+
 		Response res =
 		given()
 		.contentType("application/json")

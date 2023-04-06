@@ -56,8 +56,9 @@ public class JSONBodyCreation_Pojo {
 			    "https://i.dummyjson.com/data/products/1/4.jpg",
 			    "https://i.dummyjson.com/data/products/1/thumbnail.jpg"};
 		
-		data.setImagesArr(imagesArr);
-		
+		System.out.println(imagesArr[1]);
+		data.setImages(imagesArr);
+		System.out.println(data.getImages()[2]);;
 		Response res =
 		given()
 		.contentType("application/json")
@@ -68,8 +69,9 @@ public class JSONBodyCreation_Pojo {
 		.extract().response();
 		
 		assertEquals(res.jsonPath().get("title"), "Redmi Note 12 Pro");
+		System.out.println("Got List of Images as "+res.jsonPath().getList("images"));
 		System.out.println("****Response Body Printed ***********");
-		System.out.println(res.asPrettyString());
+		System.out.println(res.asString());
 	}
 
 }

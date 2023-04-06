@@ -11,7 +11,7 @@ public class Products_Pojo {
 	String brand;
 	String category;
 	String thumbnail;
-	String imagesArr[];
+	String images[];
 	
 	public String getTitle() {
 		return title;
@@ -67,11 +67,11 @@ public class Products_Pojo {
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;
 	}
-	public String[] getImagesArr() {
-		return imagesArr;
+	public String[] getImages() {
+		return images;
 	}
-	public void setImagesArr(String[] imagesArr) {
-		this.imagesArr = imagesArr;
+	public void setImages(String[] images) {
+		this.images = images;
 	}
 	
 	
