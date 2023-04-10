@@ -16,7 +16,7 @@ import org.json.JSONObject;
 
 /**
  * 
- * @author admin
+ * @author Ritesh Mansukhani
  * Sample JSON Response
  {
     "page": 2,
