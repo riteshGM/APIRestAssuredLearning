@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import io.restassured.http.ContentType;
+import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.*;
@@ -41,40 +42,27 @@ import org.json.JSONObject;
 </TravelerinformationResponse>
  */
 
-public class XMLResponseValidation {
+public class XMLResponseValidation_UsingXmlPathObj {
 	/**
 	 * Validating XML Response
-	 * Approach#1 Directly Using methods in then() section
+	 * Approach#3 Using XmlPath class and it's method to retrieve XML attribute values.
 	 * 
 	 */
 	@Test
-	public void xmlValidation() {
-		given()
-		.when()
-		.get("http://restapi.adequateshop.com/api/Traveler?pages=1")
-		.then()
-		.statusCode(200)
-		.header("content-type", "application/xml; charset=utf-8")
-		.body("TravelerinformationResponse.page",equalTo("1"))
-		.body("TravelerinformationResponse.travelers.Travelerinformation[0].name",equalTo("Developer"));
-	}
-
-	/**
-	 * Validating XML Response
-	 * Approach#2 Storing Response in Response Object and Using methods of Response class
-	 * 
-	 */
-	@Test
-	public void xmlValidation_UsingResponseObj() {
+	public void xmlValidation_UsingXmlPathObj() {
 		Response res = 
 				given()
 				.when()
 				.get("http://restapi.adequateshop.com/api/Traveler?pages=1")
 				.then().extract().response();
-		Assert.assertEquals(res.statusCode(),200);
-		Assert.assertEquals(res.header("content-type"), "application/xml; charset=utf-8");
-		Assert.assertEquals(res.xmlPath().get("TravelerinformationResponse.page").toString(),"1");
-		Assert.assertEquals(res.xmlPath().get("TravelerinformationResponse.travelers.Travelerinformation[0].name"), "Developer");
+		
+		XmlPath xmlObj = new XmlPath(res.asString());
+		//Suppose we want to Verify Total Number of Travellers in a Particualr Page
+		int totalTravellers = xmlObj.getList("TravelerinformationResponse.travelers.Travelerinformation").size();
+		System.out.println("Total Travellers found "+totalTravellers);
+		Assert.assertEquals(totalTravellers, 10);
+		//Suppose we want to verify if traveler named "Developer" is present in a particular page or not
+		Assert.assertEquals(xmlObj.getList("TravelerinformationResponse.travelers.Travelerinformation.name").contains("Developer"),true);
 
 	}
 }
