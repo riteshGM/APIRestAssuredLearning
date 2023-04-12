@@ -43,7 +43,7 @@ import org.json.JSONObject;
 
 public class XMLResponseValidation {
 	/**
-	 * Validating XML Response
+	 * Validating JSON Response
 	 * Approach#1 Directly Using methods in then() section
 	 * 
 	 */
@@ -60,7 +60,7 @@ public class XMLResponseValidation {
 	}
 
 	/**
-	 * Validating XML Response
+	 * Validating JSON Response
 	 * Approach#2 Storing Response in Response Object and Using methods of Response class
 	 * 
 	 */
