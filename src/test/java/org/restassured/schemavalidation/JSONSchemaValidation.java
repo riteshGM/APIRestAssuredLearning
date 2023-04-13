@@ -8,10 +8,8 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 public class JSONSchemaValidation {
 
 	/**
-	 * Validating JSON Response
-	 * Approach#1 Using Methods in then() Section
-	 * This Approach is useful when your Response Body Size is Relatively
-	 * small or manageable
+	 * Validating JSON Schema Using JSONSchemaValidator
+	 * Mainly Used to validate Data Types of each attribute are correct or not and structure of JSON is matched
 	 */
 	@Test
 	public void schemaValidation() {
