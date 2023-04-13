@@ -1,4 +1,4 @@
-package org.restassured.scripts;
+package org.restassured.allrequesttypescripts;
 
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.*;

@@ -1,4 +1,4 @@
-package org.restassured.scripts;
+package org.restassured.allrequesttypescripts;
 
 import static io.restassured.RestAssured.given;
 

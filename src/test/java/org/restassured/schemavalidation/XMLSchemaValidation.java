@@ -13,7 +13,7 @@ import static org.hamcrest.Matchers.*;
 public class XMLSchemaValidation {
 
 	/**
-	 * Validating JSON Schema Using JSONSchemaValidator
+	 * Validating XML Schema Using RestAssuredMatchers
 	 * Mainly Used to validate Data Types of each attribute are correct or not and structure of JSON is matched
 	 */
 	@Test
